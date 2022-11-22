@@ -35,6 +35,13 @@ namespace la_mia_pizzeria_static.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Pizza pizza)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            db.Pizze.Add(pizza);
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
     }

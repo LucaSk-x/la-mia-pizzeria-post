@@ -1,15 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace la_mia_pizzeria_static.Models
 {
     public class Pizza
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Il campo nome non può essere vuoto")]
+        [StringLength(100, ErrorMessage = "Il titolo non può essere oltre i 100 caratteri")]
         public string Name { get; set; }
 
         [Column(TypeName = "text")]
+
+        [Required(ErrorMessage = "Il campo Descrizione non può essere vuoto")]
         public string Description { get; set; }
+
+        [Range(Int32.MinValue, 1, ErrorMessage ="Il campo deve essere minimo di 1")]
         public double Price { get; set; }
+
+        [Required(ErrorMessage = "Il campo Immagine non può essere vuoto")]
         public string Image { get; set; }
 
         public Pizza()
